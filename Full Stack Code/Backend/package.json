@@ -1,0 +1,20 @@
+{
+  "name": "todo_backend",
+  "version": "1.0.0",
+  "description": "ToDo app backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "bhavesh",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "flowbite": "^2.5.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.7.0",
+    "node-cron": "^3.0.3",
+    "zod": "^3.23.8"
+  }
+}

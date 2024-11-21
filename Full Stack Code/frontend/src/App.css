@@ -1,0 +1,30 @@
+/* Add these styles to your CSS file */
+.public-DraftStyleDefault-block {
+  margin: 8px 0;
+}
+
+.header-one {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.header-two {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.header-three {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.blockquote {
+  border-left: 4px solid #ccc;
+  padding-left: 16px;
+  color: #666;
+  font-style: italic;
+  margin: 8px 0;
+}
