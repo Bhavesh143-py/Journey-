@@ -10,7 +10,7 @@ export function NavigateRoutes() {
     const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [isProfileOpen, setProfileOpen] = useState(false); // State for profile popup
     const { setToken } = useToken();
-    const { ProUsername } = useUsername();
+    const { ProUsername,ProPass } = useUsername();
     // Function to determine if a link is active
     const isActive = (path) => location.pathname === path;
 
@@ -119,10 +119,10 @@ export function NavigateRoutes() {
                         </button>
                     </div>
                     <div className='flex justify-between items-center mb-4'>
-                        <h1>Password123</h1>
+                        <h1>{ProPass}</h1>
                         <button
                             onClick={() => {
-                                navigator.clipboard.writeText("Password123")
+                                navigator.clipboard.writeText(ProPass)
                                     .then(() => { alert('Password copied to clipboard!'); })
                                     .catch(err => { console.error('Could not copy password: ', err); });
                             }}

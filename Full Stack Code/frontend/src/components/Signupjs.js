@@ -1,12 +1,11 @@
-const Signup = async ({ username, password, mail }, navigate, setToken,setProUsername) => {
+const Signup = async ({ username, password }, navigate, setToken,setProUsername,setProPass) => {
     try {
         const response = await fetch("http://localhost:3000/api/user/signup", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 username: username,
-                password: password,
-                email: mail
+                password: password
             })
         });
 
@@ -25,7 +24,9 @@ const Signup = async ({ username, password, mail }, navigate, setToken,setProUse
 
         // Set token and navigate
         setToken(token);
-        setProUsername(username)
+        setProUsername(username);
+        setProPass(password);
+        
         navigate('/Journal');
 
 

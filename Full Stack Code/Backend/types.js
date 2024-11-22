@@ -1,13 +1,11 @@
 const zod = require("zod");
 const UserSignup=zod.object({
     username:zod.string().min(1),
-    email: zod.string().email().optional(),
-    password: zod.string().min(8).optional(),
+    password: zod.string().min(8),
 
 })
 const userLogin=zod.object({
     username:zod.string().min(1).optional(),
-    email: zod.string().email().optional(),
     password: zod.string().min(8).optional(),
 
 })

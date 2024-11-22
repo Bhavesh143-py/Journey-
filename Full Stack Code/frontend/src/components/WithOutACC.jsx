@@ -5,7 +5,7 @@ import { useToken,useUsername } from "./tokencontext";
 
 export default function Without() {
     const { setToken } = useToken();
-    const { ProUsername,setProUsername } =useUsername();
+    const { setProUsername,setProPass } =useUsername();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false); // For loading feedback
 
@@ -13,10 +13,10 @@ export default function Without() {
         setLoading(true);
         const username = `user_${Math.random().toString(36).substr(2, 9)}`;
         const password = "Password123"; // Temporary placeholder
-        const mail = `${username}@example.com`; // Temporary placeholder email
+        // const mail = `${username}@example.com`; // Temporary placeholder email
 
         try {
-            await Signup({ username, password, mail }, navigate, setToken,setProUsername);
+            await Signup({ username, password }, navigate, setToken,setProUsername,setProPass);
             // setProUsername(username);
             // console.log(username)
             // console.log("after setting",ProUsername)

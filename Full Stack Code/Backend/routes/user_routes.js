@@ -20,8 +20,7 @@ app.post("/signup", async (req, res) => {
     }
     const newUser = await User.create({
         username: createUser.username,
-        email: createUser.email,
-        password: createUser.password,
+        password: createUser.password
     })
     const logintoken = jwt.sign({ id: newUser._id }, JWT_secret);
     res.status(200).json({

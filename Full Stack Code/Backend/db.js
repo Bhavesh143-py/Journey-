@@ -7,13 +7,8 @@ const userSchema = new mongoose.Schema({
         unique: true,
         trim: true,
     },
-    email: {
-        type: String,
-        trim: true,
-    },
     password: {
-        type: String,
-        
+        type: String,    
     },
 }, { timestamps: true })
 const todoSchema = new mongoose.Schema({

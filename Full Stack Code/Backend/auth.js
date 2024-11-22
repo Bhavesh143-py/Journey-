@@ -1,5 +1,7 @@
 const jwt =require("jsonwebtoken");
-const JWT_secret = import.meta.env.VITE_APP_AUTH0_JWT_secret;
+require('dotenv').config();
+
+const JWT_secret = process.env.AUTH0_JWT_SECRET;
 const auth_middle=(req,res,next)=>{
     const auth_header=req.headers["authorization"] || req.headers["Authorization"];
     const token =auth_header && auth_header.split(" ")[1];
