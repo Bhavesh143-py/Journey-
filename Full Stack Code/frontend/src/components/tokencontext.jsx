@@ -67,3 +67,19 @@ export const UsernameProvider = ({children}) =>{
     <UserContext.Provider value={{ProUsername,setProUsername,ProPass,setProPass}}>{children}</UserContext.Provider>
   );
 };
+const DarkContext = createContext();
+export const useDarkMode =()=> useContext(DarkContext);
+export const DarkModeProvider = ({children})=>{
+  const [darkMode, setDarkMode] = useState(() => {
+    // Check localStorage for existing preference
+    const savedMode = localStorage.getItem("darkMode");
+    return savedMode ? JSON.parse(savedMode) : false;
+  });
+  useEffect(() => {
+    localStorage.setItem("darkMode", JSON.stringify(darkMode));
+  }, [darkMode]);
+
+  return(
+    <DarkContext.Provider value={{darkMode,setDarkMode}}>{children}</DarkContext.Provider>
+  )
+};

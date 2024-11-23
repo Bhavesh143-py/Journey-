@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useToken,useUsername } from "../components/tokencontext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
+import NamePlate from "../components/NamePlate";
 
 
 function LoginUser() {
@@ -11,20 +12,30 @@ function LoginUser() {
   const [password, setPassword] = useState("");
   const navigate2 = useNavigate();
   const { setToken } = useToken();
-  const {setProUsername} =useUsername();
+  const {setProUsername,setProPass} =useUsername();
   
-  
+  async function handlelogin(event) {
+    event.preventDefault();
+    try {
+      await Login({ username, password }, navigate2, setToken, setProUsername, setProPass);
+    } catch (error) {
+      console.error("Error during signup:", error);
+    }
+    
+  }
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="p-8 rounded-lg w-full max-w-md flex flex-col items-center m-4 border-gray-500 shadow-lg">
+    <div>
+      <NamePlate/>
+    <div className="flex items-center justify-center">
+      <div className="p-4 rounded-lg w-full max-w-md flex flex-col items-center border-gray-500 shadow-lg">
         <a href="/" className="flex items-center space-x-3 pb-3">
           <img src="src/assets/uphillll.svg" alt="journey" className="h-8" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap">
             Journey
           </span>
         </a>
-
+        <form onSubmit={handlelogin} >
         <div className="w-full mb-4 flex items-center border rounded-xl">
           <FontAwesomeIcon icon={faUser} className="mx-2" />
           <input
@@ -48,9 +59,7 @@ function LoginUser() {
         <div className="w-full mb-4">
           <button
             className="w-full px-4 py-2 text-center border rounded-xl"
-            onClick={() => {
-              Login({ username, password }, navigate2, setToken,setProUsername);
-            }}
+            type="submit"
           >
             Login User
           </button>
@@ -66,9 +75,10 @@ function LoginUser() {
             New User
           </a>
         </div>
+        </form>
       </div>
     </div>
-
+    </div>
   );
 }
 

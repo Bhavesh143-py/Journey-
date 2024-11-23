@@ -8,11 +8,13 @@ import { useToken } from "../components/tokencontext";
 import { NavigateRoutes } from "../components/navig";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRedo } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from "react-router-dom";
 
 export default function AddTodos() {
   const {token}=useToken();
   const [todos, setTodos] = useState([]);
   const [taskUpdated, setTaskUpdated] = useState(Date.now());
+  const navigate = useNavigate();
   
 
   const ResetChecks =async ()=>{
@@ -25,7 +27,8 @@ export default function AddTodos() {
           }
           }
         );
-         window.location.reload();
+        //  window.location.reload("/Journal");
+        navigate("/DailyActions")
       } catch (err) { console.log("error:", err); }
     } 
   }

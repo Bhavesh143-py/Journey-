@@ -1,11 +1,10 @@
-const Login = ({username,password},navigate2,setToken,setProUsername)=>{
+const Login = ({username,password},navigate2,setToken,setProUsername,setProPass)=>{
     fetch("http://localhost:3000/api/user/login",{
         method : "POST",
         headers:{ "Content-Type": "application/json",},
         body : JSON.stringify({
             username : username,
             password : password,
-            // email : mail
         })
     })
     .then(async  (res)=> {
@@ -16,6 +15,7 @@ const Login = ({username,password},navigate2,setToken,setProUsername)=>{
         const token=data.id;
         alert(`${username} Logged in..!`);
         setProUsername(username);
+        setProPass(password);
         setToken(token);
         // localStorage.setItem('authtoken',token);
         navigate2('/Journal');

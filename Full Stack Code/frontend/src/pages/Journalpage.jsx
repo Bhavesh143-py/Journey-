@@ -86,7 +86,7 @@ function Alljournals({ journalmonth, onjournalclick, hoveredDate, setHoveredDate
   }
 
   return (
-    <div className="relative inline-block m-2">
+    <div className="relative flex flex-wrap justify-center mx-auto p-4">
       {journalmonth.map((journal, index) => {
         const averagescore = (journal.satisfaction_rate + journal.productivity_rate) / 2 || 0; // Default to 0 if undefined
         const buttoncolor = averagescore >= 7 ? 'bg-lime-500 hover:bg-green-700 focus:ring-green-600' :
@@ -232,19 +232,21 @@ function Journal() {
   },[token,month,journalUpdated])
 
   return (
-    <div className="">
-      <NavigateRoutes/>
+    <div>
+      <NavigateRoutes />
       <RenderJournal journal={fetchedJournal} />
       <MyEditor date={date} toggle={toggle}></MyEditor>
-      {/* Render the fetched journal */}
-      
 
       {/* Journal Form */}
-      {/* Journal Form */}
       <div className="relative w-1/2 mx-auto p-4 space-y-6"> {/* Container for spacing and centering */}
-        <div className="flex justify-between items-center"> {/* Flexbox for side-by-side arrangement */}
+
+        {/* Satisfaction and Productivity Sliders */}
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+          {/* Satisfaction */}
           <div className="flex flex-col items-center">
-            <label htmlFor="satisfaction" className="block text-center">Satisfaction : {satisfaction}</label>
+            <label htmlFor="satisfaction" className="block text-center">
+              Satisfaction: {satisfaction}
+            </label>
             <input
               type="range"
               id="satisfaction"
@@ -253,11 +255,15 @@ function Journal() {
               max="10"
               value={satisfaction}
               onChange={(e) => setSatisfaction(Number(e.target.value))}
-              className="w-52" 
+              className="w-52"
             />
           </div>
+
+          {/* Productivity */}
           <div className="flex flex-col items-center">
-            <label htmlFor="productivity" className="block text-center">Productivity : {productivity}</label>
+            <label htmlFor="productivity" className="block text-center">
+              Productivity: {productivity}
+            </label>
             <input
               type="range"
               id="productivity"
@@ -266,14 +272,19 @@ function Journal() {
               max="10"
               value={productivity}
               onChange={(e) => setProductivity(Number(e.target.value))}
-              className="w-52" 
+              className="w-52"
             />
           </div>
         </div>
 
         {/* Centered Date Picker */}
         <div className="flex justify-center">
-          <DatePickerComponent date={date} fetchedJournal={fetchedJournal} setDate={setDate} setEditorContent={setEditorContent}  />
+          <DatePickerComponent
+            date={date}
+            fetchedJournal={fetchedJournal}
+            setDate={setDate}
+            setEditorContent={setEditorContent}
+          />
         </div>
 
         {/* Save Button */}
@@ -285,13 +296,11 @@ function Journal() {
             Save
           </button>
         </div>
-
-        {/* All Journals Section */}
-        
       </div>
+
+      {/* Previous Journals Section */}
       <h1 className="text-center font-semibold">Previous Journals</h1>
-      <div className="w-full items-center flex justify-center"> {/* Full width for the Alljournals component */}
-        
+      <div className="flex justify-center items-center mx-auto w-full">
         <Alljournals
           journalmonth={journalmonth}
           onjournalclick={setFetchedJournal}
@@ -303,6 +312,7 @@ function Journal() {
       </div>
     </div>
   );
+
 }
 
 export { Journal };

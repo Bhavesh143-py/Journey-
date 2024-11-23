@@ -34,8 +34,8 @@ export default function TaskTable({ todos = [], token, onTaskRemoved, setTaskUpd
   }
 
   return (
-    <div className="overflow-x-auto m-4">
-      <table className="w-2/3 table-auto border-collapse border border-gray-500 mx-auto shadow-lg">
+    <div className="overflow-x-auto m-2">
+      <table className="w-5/6 table-auto border-collapse border border-gray-500 mx-auto shadow-lg">
         <thead>
           <tr className="text-center text-base">
             <th className="p-4 border border-gray-300">Task No.</th>

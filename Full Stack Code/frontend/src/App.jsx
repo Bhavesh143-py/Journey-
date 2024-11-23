@@ -5,7 +5,7 @@ import {LoginUser,token} from './pages/Loginpage'
 import AddTodos from './pages/Addtodos'
 import { Journal } from './pages/Journalpage'
 import {Dummy} from './pages/dashboard'
-import { EditorProvider, TokenProvider,UsernameProvider } from './components/tokencontext'
+import { DarkModeProvider, EditorProvider, TokenProvider,UsernameProvider } from './components/tokencontext'
 import { Goals } from './pages/Goals'
 
 import 'flowbite'; // Import Flowbite's JavaScript
@@ -23,14 +23,15 @@ function App() {
         <UsernameProvider>
       <TokenProvider>
         <EditorProvider>
+          <DarkModeProvider>
       <Routes>
         <Route index element={<SignupRender/>} ></Route>
-        <Route path='/dashboard' element={<Dummy/>}></Route>
         <Route path='/login' element={<LoginUser/>}/>
         <Route path='/DailyActions' element={<AddTodos/>}/>
         <Route path='/Journal' element={<Journal/>} />
         <Route path='/goals' element={<Goals/>}/>
       </Routes>
+            </DarkModeProvider>
         </EditorProvider>
       </TokenProvider>
         </UsernameProvider>
