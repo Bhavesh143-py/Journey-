@@ -4,9 +4,5 @@
 
 /* Global Transition Configuration */
 * {
-    transition-property: color,background-color;
-    transition-duration: 200ms;
-    /* Uniform duration for both */
-    transition-timing-function: ease-in-out;
-    /* Smooth easing */
+   @apply transition-colors duration-200;
 }

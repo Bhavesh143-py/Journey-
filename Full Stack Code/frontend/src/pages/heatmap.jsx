@@ -49,6 +49,7 @@ export default function HeatMapComponent({ startdate, enddate }) {
                 weekLabels={['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']}
                 startDate={new Date(start)}
                 endDate={new Date(end)}
+                style={{ color: '#ad001d', '--rhm-rect-active': 'red' }}
                 panelColors={panelColors}
                 rectRender={(props, data) => {
                     // if (!data.count) return <rect {...props} />;

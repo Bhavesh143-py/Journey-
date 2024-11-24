@@ -1,8 +1,9 @@
 import { useEffect, useState,useRef } from "react";
-import { useToken,useEditor } from "../components/tokencontext";
+import { useToken,useEditor,useDarkMode } from "../components/tokencontext";
 import axios from 'axios';
 import { NavigateRoutes } from "../components/navig";
 import MyEditor from "../components/TextEditor";
+import DarkModeButton from "../components/DarkMode";
 
 
 function DatePickerComponent({ date, setDate }) {
@@ -140,7 +141,7 @@ function Journal() {
   const [fetchedJournal, setFetchedJournal] = useState(null); // Store the fetched journal data
   const [journalUpdated, setJournalUpdated] = useState(false);
   const [journalmonth,setjournalmonth] =useState(null);// storing the month full of journals
-
+  const {darkMode} =useDarkMode();
   // Function to upload the journal entry to the backend
   const uploadJournal = () => {
     fetch("http://localhost:3000/api/journal/journal", {
@@ -232,86 +233,97 @@ function Journal() {
   },[token,month,journalUpdated])
 
   return (
-    <div>
-      <NavigateRoutes />
-      <RenderJournal journal={fetchedJournal} />
-      <MyEditor date={date} toggle={toggle}></MyEditor>
+    <div className={`${darkMode ? "dark" : ""}`}>
+      <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-black dark:text-white">
+        <NavigateRoutes />
+        <DarkModeButton/>
+        <RenderJournal journal={fetchedJournal} />
+        <MyEditor date={date} toggle={toggle}></MyEditor>
 
-      {/* Journal Form */}
-      <div className="relative w-1/2 mx-auto p-4 space-y-6"> {/* Container for spacing and centering */}
+        {/* Journal Form */}
+        <div className="relative w-1/2 mx-auto p-4 space-y-6 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg shadow-md">
+          {/* Satisfaction and Productivity Sliders */}
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+            {/* Satisfaction */}
+            <div className="flex flex-col items-center">
+              <label
+                htmlFor="satisfaction"
+                className="block text-center text-black dark:text-white"
+              >
+                Satisfaction: {satisfaction}
+              </label>
+              <input
+                type="range"
+                id="satisfaction"
+                name="satisfaction"
+                min="0"
+                max="10"
+                value={satisfaction}
+                onChange={(e) => setSatisfaction(Number(e.target.value))}
+                className="w-52"
+              />
+            </div>
 
-        {/* Satisfaction and Productivity Sliders */}
-        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
-          {/* Satisfaction */}
-          <div className="flex flex-col items-center">
-            <label htmlFor="satisfaction" className="block text-center">
-              Satisfaction: {satisfaction}
-            </label>
-            <input
-              type="range"
-              id="satisfaction"
-              name="satisfaction"
-              min="0"
-              max="10"
-              value={satisfaction}
-              onChange={(e) => setSatisfaction(Number(e.target.value))}
-              className="w-52"
+            {/* Productivity */}
+            <div className="flex flex-col items-center">
+              <label
+                htmlFor="productivity"
+                className="block text-center text-black dark:text-white"
+              >
+                Productivity: {productivity}
+              </label>
+              <input
+                type="range"
+                id="productivity"
+                name="productivity"
+                min="0"
+                max="10"
+                value={productivity}
+                onChange={(e) => setProductivity(Number(e.target.value))}
+                className="w-52"
+              />
+            </div>
+          </div>
+
+          {/* Centered Date Picker */}
+          <div className="flex justify-center">
+            <DatePickerComponent
+              date={date}
+              fetchedJournal={fetchedJournal}
+              setDate={setDate}
+              setEditorContent={setEditorContent}
             />
           </div>
 
-          {/* Productivity */}
-          <div className="flex flex-col items-center">
-            <label htmlFor="productivity" className="block text-center">
-              Productivity: {productivity}
-            </label>
-            <input
-              type="range"
-              id="productivity"
-              name="productivity"
-              min="0"
-              max="10"
-              value={productivity}
-              onChange={(e) => setProductivity(Number(e.target.value))}
-              className="w-52"
-            />
+          {/* Save Button */}
+          <div className="flex justify-center">
+            <button
+              onClick={uploadJournal}
+              className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-10 py-2.5 text-center"
+            >
+              Save
+            </button>
           </div>
         </div>
 
-        {/* Centered Date Picker */}
-        <div className="flex justify-center">
-          <DatePickerComponent
-            date={date}
-            fetchedJournal={fetchedJournal}
-            setDate={setDate}
+        {/* Previous Journals Section */}
+        <h1 className="text-center font-semibold text-black dark:text-white mt-2 pt-2">
+          Previous Journals
+        </h1>
+        <div className="flex justify-center items-center mx-auto w-full">
+          <Alljournals
+            journalmonth={journalmonth}
+            onjournalclick={setFetchedJournal}
+            hoveredDate={hoveredDate}
+            setHoveredDate={setHoveredDate}
             setEditorContent={setEditorContent}
+            setDate={setDate}
           />
         </div>
-
-        {/* Save Button */}
-        <div className="flex justify-center">
-          <button
-            onClick={uploadJournal}
-            className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-10 py-2.5 text-center"
-          >
-            Save
-          </button>
-        </div>
-      </div>
-
-      {/* Previous Journals Section */}
-      <h1 className="text-center font-semibold">Previous Journals</h1>
-      <div className="flex justify-center items-center mx-auto w-full">
-        <Alljournals
-          journalmonth={journalmonth}
-          onjournalclick={setFetchedJournal}
-          hoveredDate={hoveredDate}
-          setHoveredDate={setHoveredDate}
-          setEditorContent={setEditorContent}
-          setDate={setDate}
-        />
       </div>
     </div>
   );
+
 
 }
 

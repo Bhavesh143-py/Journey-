@@ -41,23 +41,24 @@ const TextAnime = () => {
     ];
 
     return (
-        <div className="min-h-screen py-4" ref={containerRef}>
+        <div className="min-h-screen py-4 dark:bg-gray-900" ref={containerRef}>
             {quotes.map((quote, index) => (
                 <div
                     key={index}
-                    className="quote-item max-w-4xl mx-auto my-32 p-8 bg-white rounded-lg shadow-lg"
+                    className="quote-item max-w-4xl mx-auto my-32 p-8 bg-white rounded-lg shadow-lg dark:bg-gray-800 dark:shadow-gray-700"
                 >
                     <div className="relative">
-                        <div className="absolute -left-4 -top-4 text-6xl text-gray-200">"</div>
-                        <p className="text-2xl md:text-3xl font-semibold text-gray-700 text-center px-8">
+                        <div className="absolute -left-4 -top-4 text-6xl text-gray-200 dark:text-gray-600">"</div>
+                        <p className="text-2xl md:text-3xl font-semibold text-gray-700 text-center px-8 dark:text-gray-300">
                             {quote}
                         </p>
-                        <div className="absolute -right-4 bottom-0 text-6xl text-gray-200">"</div>
+                        <div className="absolute -right-4 bottom-0 text-6xl text-gray-200 dark:text-gray-600">"</div>
                     </div>
                 </div>
             ))}
         </div>
     );
+
 };
 
 export default TextAnime;

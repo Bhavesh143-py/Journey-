@@ -4,17 +4,20 @@ import { CreateTodo } from "../components/CreateTodo";
 import TaskTable from "../components/tasktable";
 import axios from 'axios';
 // import { useNavigate } from "react-router-dom";
-import { useToken } from "../components/tokencontext";
+import { useToken,useDarkMode } from "../components/tokencontext";
 import { NavigateRoutes } from "../components/navig";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRedo } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from "react-router-dom";
+import DarkModeButton from "../components/DarkMode";
 
 export default function AddTodos() {
   const {token}=useToken();
+  const {darkMode} =useDarkMode();
   const [todos, setTodos] = useState([]);
   const [taskUpdated, setTaskUpdated] = useState(Date.now());
   const navigate = useNavigate();
+  const [reset,setReset] =useState(false);
   
 
   const ResetChecks =async ()=>{
@@ -28,7 +31,7 @@ export default function AddTodos() {
           }
         );
         //  window.location.reload("/Journal");
-        navigate("/DailyActions")
+        setReset(prev => !prev);
       } catch (err) { console.log("error:", err); }
     } 
   }
@@ -54,7 +57,7 @@ export default function AddTodos() {
     } else {
       console.log("no token found");
     }
-  }, [token, taskUpdated]);
+  }, [token, taskUpdated,reset]);
 
   const addTodo = (newTodo) => {
     setTodos([...todos, newTodo]);
@@ -66,8 +69,10 @@ export default function AddTodos() {
   };
 
   return (
-    <div className="">
+    <div className={`${darkMode ? "dark" : ""}`}>
+      <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
       <NavigateRoutes />
+      <DarkModeButton/>
       {/* Center the div horizontally */}
       <div className="m-4 w-2/3 mx-auto flex justify-end items-center">
         {/* Align the button to the end of the div */}
@@ -79,6 +84,7 @@ export default function AddTodos() {
       </div>
       <TaskTable todos={todos} token={token} onTaskRemoved={handleTaskRemoved} setTaskUpdated={setTaskUpdated} />
       <CreateTodo addTodo={addTodo} token={token} />
+      </div>
     </div>
   );
 

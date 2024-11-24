@@ -4,7 +4,6 @@ import {SignupRender} from './pages/SignupJSX'
 import {LoginUser,token} from './pages/Loginpage'
 import AddTodos from './pages/Addtodos'
 import { Journal } from './pages/Journalpage'
-import {Dummy} from './pages/dashboard'
 import { DarkModeProvider, EditorProvider, TokenProvider,UsernameProvider } from './components/tokencontext'
 import { Goals } from './pages/Goals'
 

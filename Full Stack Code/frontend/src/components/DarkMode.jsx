@@ -8,7 +8,7 @@ const DarkModeButton = () => {
     return (
         <span
             onClick={handleMode}
-            className="fixed top-2 left-3 z-50 text-2xl cursor-pointer h-5 w-5"
+            className="pt-3 pl-3 z-50 text-5xl cursor-pointer h-5 w-5"
         >
             {darkMode ? "🌞" : "🌚"}
         </span>

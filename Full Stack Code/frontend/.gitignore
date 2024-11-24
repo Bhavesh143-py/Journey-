@@ -12,7 +12,7 @@ dist
 dist-ssr
 *.local
 # Ignore config.json file
-..\Backend\.env
+*\Backend\.env
 
 
 # Editor directories and files

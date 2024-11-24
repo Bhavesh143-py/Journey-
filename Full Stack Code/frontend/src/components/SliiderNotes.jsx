@@ -22,7 +22,7 @@ const SlidingLogos = () => {
                         </p>
                     </div>
                 </div>
-                <p className="italic text-sm text-gray-600 group-hover:text-base transition-all duration-300">{tagline}</p>
+                <p className="italic text-sm text-gray-400 group-hover:text-base transition-all duration-300">{tagline}</p>
             </div>
         </span>
     );
@@ -77,7 +77,7 @@ const SlidingLogos = () => {
             </style>
             <div
                 ref={logos}
-                className="overflow-hidden relative bg-white py-8"
+                className="overflow-hidden relative bg-white py-8 dark:bg-gray-900"
                 style={{ whiteSpace: "nowrap" }}
             >
                 <div
@@ -96,8 +96,9 @@ const SlidingLogos = () => {
                 </div>
 
                 {/* Gradient overlays */}
-                <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent"></div>
-                <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent"></div>
+                <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent dark:from-gray-900 dark:to-transparent"></div>
+                <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent dark:from-gray-900 dark:to-transparent"></div>
+
             </div>
         </div>
     );

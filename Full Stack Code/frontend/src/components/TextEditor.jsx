@@ -115,14 +115,14 @@ function MyEditor({ date, toggle }) {
 
 
     return (
-        <div className="relative w-1/2 mx-auto p-4 border border-gray-300 rounded-md">
+        <div className="relative w-1/2 mx-auto p-4 border border-gray-300 rounded-md bg-white dark:bg-gray-900 dark:border-gray-700">
             {/* Toolbar */}
             <div className="flex flex-wrap gap-2 mb-4">
                 {/* Inline Styles */}
                 <Tooltip placement="top" content={"Bold"}>
                     <button
                         onClick={onBoldClick}
-                        className="p-2 border rounded bg-gray-100 hover:bg-gray-200 font-bold focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                        className="p-2 border rounded bg-gray-100 hover:bg-gray-200 font-bold focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white"
                     >
                         <FontAwesomeIcon icon={faBold} />
                     </button>
@@ -131,7 +131,7 @@ function MyEditor({ date, toggle }) {
                 <Tooltip placement="top" content={"Italic"}>
                     <button
                         onClick={onItalicClick}
-                        className="p-2 border rounded bg-gray-100 hover:bg-gray-200 italic focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                        className="p-2 border rounded bg-gray-100 hover:bg-gray-200 italic focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white"
                     >
                         <FontAwesomeIcon icon={faItalic} />
                     </button>
@@ -140,7 +140,7 @@ function MyEditor({ date, toggle }) {
                 <Tooltip placement="top" content={"Underline"}>
                     <button
                         onClick={onUnderlineClick}
-                        className="p-2 border rounded bg-gray-100 hover:bg-gray-200 underline focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                        className="p-2 border rounded bg-gray-100 hover:bg-gray-200 underline focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white"
                     >
                         <FontAwesomeIcon icon={faUnderline} />
                     </button>
@@ -149,7 +149,7 @@ function MyEditor({ date, toggle }) {
                 <Tooltip placement="top" content={"Code"}>
                     <button
                         onClick={onCodeClick}
-                        className="p-2 border rounded bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                        className="p-2 border rounded bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white"
                     >
                         <FontAwesomeIcon icon={faCode} />
                     </button>
@@ -159,7 +159,7 @@ function MyEditor({ date, toggle }) {
                 <Tooltip placement="top" content={"Header 1"}>
                     <button
                         onClick={onHeaderOneClick}
-                        className="text-xl p-2 border rounded bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                        className="text-xl p-2 border rounded bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white"
                     >
                         H1
                     </button>
@@ -168,7 +168,7 @@ function MyEditor({ date, toggle }) {
                 <Tooltip placement="top" content={"Header 2"}>
                     <button
                         onClick={onHeaderTwoClick}
-                        className="text-base p-2 border rounded bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                        className="text-base p-2 border rounded bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white"
                     >
                         H2
                     </button>
@@ -177,7 +177,7 @@ function MyEditor({ date, toggle }) {
                 <Tooltip placement="top" content={"Header 3"}>
                     <button
                         onClick={onHeaderThreeClick}
-                        className="text-sm p-2 border rounded bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                        className="text-sm p-2 border rounded bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white"
                     >
                         H3
                     </button>
@@ -186,7 +186,7 @@ function MyEditor({ date, toggle }) {
                 <Tooltip placement="top" content={"Quotes"}>
                     <button
                         onClick={onBlockquoteClick}
-                        className="p-2 border rounded bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                        className="p-2 border rounded bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white"
                     >
                         <FontAwesomeIcon icon={faQuoteRight} />
                     </button>
@@ -195,7 +195,7 @@ function MyEditor({ date, toggle }) {
                 <Tooltip placement="top" content={"Unordered List"}>
                     <button
                         onClick={onUnorderedListClick}
-                        className="p-2 border rounded bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                        className="p-2 border rounded bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white"
                     >
                         <FontAwesomeIcon icon={faList} />
                     </button>
@@ -204,16 +204,15 @@ function MyEditor({ date, toggle }) {
                 <Tooltip placement="top" content={"Ordered List"}>
                     <button
                         onClick={onOrderedListClick}
-                        className="p-2 border rounded bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                        className="p-2 border rounded bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white"
                     >
                         <FontAwesomeIcon icon={faListOl} />
                     </button>
                 </Tooltip>
             </div>
 
-
             {/* Text editor */}
-            <div className="border border-gray-200 rounded min-h-[300px] p-4">
+            <div className="border border-gray-200 rounded min-h-[300px] p-4 bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white">
                 <Editor
                     editorState={editorState}
                     handleKeyCommand={handleKeyCommand}
@@ -224,6 +223,7 @@ function MyEditor({ date, toggle }) {
             </div>
         </div>
     );
+
 }
 
 export default MyEditor;

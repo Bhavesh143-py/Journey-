@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { useToken } from "../components/tokencontext";
+import { useToken,useDarkMode } from "../components/tokencontext";
 import { NavigateRoutes } from "../components/navig";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import HeatMapComponent from "./heatmap";
+import DarkModeButton from "../components/DarkMode";
+import { Datepicker } from "flowbite-react";
 
 export function Goals() {
     const [startDate, setStartDate] = useState("");
@@ -14,8 +16,9 @@ export function Goals() {
     const [goalsUpdated, setGoalsUpdated] = useState(false);
     const [showGoalForm, setShowGoalForm] = useState(false);
     const { token, setToken } = useToken();
+    const { darkMode } =useDarkMode();
     const [editingGoalId, setEditingGoalId] = useState(null);
-    const [editedGoal, setEditedGoal] = useState({});
+    const [editedGoal, setEditedGoal] = useState(null);
     const formatDateForInput = (date) => {
         const d = new Date(date);
         return d.toISOString().split('T')[0]; // Get date part in yyyy-mm-dd format
@@ -170,10 +173,15 @@ export function Goals() {
             <p className="text-center font-semibold">Try To set some Goals</p>
         )
     }
+    function Component() {
+        return <Datepicker title="Flowbite Datepicker" />
+    }
 
     return (
-        <div>
+        <div className={`${darkMode ? "dark" : ""}`} >
+            <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-black dark:text-white">
             <NavigateRoutes/>
+            <DarkModeButton/>
             {goals.length === 0 && (
                 <div className="text-center my-4">
                     <p className="text-lg font-medium">Try setting some Goal</p>
@@ -182,31 +190,39 @@ export function Goals() {
 
             <div>
         {goals.map((goal) => (
-            <div key={goal._id} className="border-gray-900 shadow-md  mx-auto w-3/5 my-4">
+            <div key={goal._id} className=" shadow-md  mx-auto w-3/5 my-4 border dark:shadow-sm dark:shadow-white">
                 {editingGoalId === goal._id ? (
-                <div className="mx-auto w-2/3">
+                <div className="mx-auto w-2/3 dark:">
                     <div className="flex justify-between pt-4">
                         <div>
                         <label htmlFor="startdate" className="block text-left">Start :</label>
-                        <input
-                            type="date"
-                            name="startdate"
-                            id="startdate"
-                            value={editedGoal.startdate ? formatDateForInput(editedGoal.startdate) : ""}
-                            onChange={(e) => handleInputChange(e, goal._id)}
-                            className="border border-gray-300 p-2"
-                        />
+                            <Datepicker
+                                title="Goal Set:"
+                                selected={editedGoal.startdate ? new Date(editedGoal.startdate) : null} // Convert to Date object
+                                onChange={(date) => {
+                                 // Handle change to update the state
+                                const event = { target: { name: "startdate", value: date } };
+                                handleInputChange(event, goal._id);
+                                }}
+                                name="startdate"
+                                id="startdate"
+                                className="p-2"
+                                />
                         </div>
                         <div>
                         <label htmlFor="enddate" className="block text-left">End :</label>
-                        <input
-                            type="date"
-                            name="enddate"
-                            id="enddate"
-                            value={editedGoal.enddate ? formatDateForInput(editedGoal.enddate) : ""}
-                            onChange={(e) => handleInputChange(e, goal._id)}
-                            className="border border-gray-300 p-2"
-                        />
+                                <Datepicker
+                                    title="Goal End:"
+                                    selected={editedGoal.enddate ? new Date(editedGoal.enddate) : null} // Converts string to Date object
+                                    onChange={(date) => {
+                                        // Handle date selection
+                                        const event = { target: { name: "enddate", value: date } }; // Convert date to ISO format
+                                        handleInputChange(event, goal._id);
+                                    }}
+                                    name="enddate"
+                                    id="enddate"
+                                    className="p-2" // Styling similar to input
+                                />
                         </div>
                     </div>
                     <div className="w-full flex flex-col items-center" >
@@ -218,7 +234,7 @@ export function Goals() {
                         id="title"
                         value={editedGoal.title}
                         onChange={(e) => handleInputChange(e, goal._id)}
-                            className="w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xl focus:ring-blue-500 focus:border-blue-500"
+                            className="w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xl focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-900 dark:text-white"
                     />
                         </div>
                         <div className="m-4 w-full">
@@ -229,7 +245,7 @@ export function Goals() {
                         id="description"
                         value={editedGoal.description}
                         onChange={(e) => handleInputChange(e, goal._id)}
-                            className=" bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5"
+                                    className=" bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-900 dark:text-white"
                     />
                         </div>
                     </div>
@@ -250,7 +266,7 @@ export function Goals() {
                     <h1 className="text-3xl font-bold pt-4">#{goal.title}</h1>
                     <h2 className="text-lg font-semibold p-2">@{goal.description}</h2>
                     </div>
-                    <div className="border-gray-600 shadow-md" >
+                            <div className="border-gray-600 shadow-md dark:shadow-sm dark:shadow-white dark:border-gray-200" >
                     <HeatMapComponent startdate={goal.startdate} enddate={goal.enddate} />
                     </div>
                     <div className="py-4 flex justify-center">
@@ -264,40 +280,39 @@ export function Goals() {
         </div>
     ))}
 </div>
-            <div className="border-gray-900 mx-auto w-3/5 my-6 flex justify-center">
+            <div className="border-gray-900 mx-auto w-3/5 mt-6 py-6 flex justify-center">
                 {/* Conditional Form Section */}
                 {showGoalForm && (
-                    <div className="mx-auto w-2/3">
+                    <div className="mx-auto w-2/3 ">
                         <div className="flex justify-between">
                             <div>
-                                <label htmlFor="startDate" className="block  mb-2 text-sm font-medium text-gray-900">Start :</label>
-                            <input
-                                className="p-2 border rounded"
-                                type="date"
-                                name="StartDate"
-                                id="startDate"
-                                value={startDate}
-                                placeholder="dd/mm/yyyy"
-                                onChange={(e) => setStartDate(e.target.value)}
-                            />
+                                <label htmlFor="startDate" className="block  mb-2 text-sm font-medium text-gray-900 dark:text-white">Start :</label>
+                                    <Datepicker
+                                        title="Goal Set:"
+                                        className="p-2" 
+                                        selected={startDate ? new Date(startDate) : null} 
+                                        onChange={(date) => setStartDate(date)}  
+                                        id="startDate" 
+                                        name="StartDate" 
+                                    />
                             </div>
                             <div>
-                                <label htmlFor="endDate" className="block  mb-2 text-sm font-medium text-gray-900">End :</label>
-                            <input
-                                className="p-2  border rounded"
-                                type="date"
-                                name="EndDate"
-                                id="endDate"
-                                value={endDate}
-                                onChange={(e) => setEndDate(e.target.value)}
-                            />
+                                    <label htmlFor="endDate" className="block  mb-2 text-sm font-medium text-gray-900 dark:text-white">End :</label>
+                                    <Datepicker
+                                        title="Goal End:"
+                                        className="p-2"
+                                        selected={endDate ? new Date(endDate) : null}
+                                        onChange={(date) => setEndDate(date)}
+                                        id="startDate"
+                                        name="StartDate"
+                                    />
                             </div>
                         </div>
                         <div className="w-full flex flex-col items-center">
                             <div className="m-4 w-full">
-                                <label htmlFor="title" className="block  mb-2 text-sm font-medium text-gray-900">Goal Title :</label>
+                                <label htmlFor="title" className="block  mb-2 text-sm font-medium text-gray-900 dark:text-white">Goal Title :</label>
                         <input
-                            className="w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xl focus:ring-blue-500 focus:border-blue-500"
+                            className="w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xl focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-900 dark:text-white"
                             id="title"
                             type="text"
                             placeholder="Title"
@@ -306,9 +321,9 @@ export function Goals() {
                         />
                             </div>
                             <div className="m-4 w-full">
-                                <label htmlFor="description" className="block  mb-2 text-sm font-medium text-gray-900">Goal Description :</label>
+                                <label htmlFor="description" className="block  mb-2 text-sm font-medium text-gray-900 dark:text-white">Goal Description :</label>
                         <input
-                                    className="w-full p-2.5 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500"
+                                        className="w-full p-2.5 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-900 dark:text-white"
                             type="text"
                             id="description"
                             placeholder="Description"
@@ -352,7 +367,7 @@ export function Goals() {
                     </button>
                 )}
             </div>
-
+            </div>
         </div>
     );
 }
