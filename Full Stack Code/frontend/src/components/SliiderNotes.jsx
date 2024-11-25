@@ -29,26 +29,26 @@ const SlidingLogos = () => {
 
     const cards = [
         {
-            imgSrc: "/src/assets/texteditor.png",
+            imgSrc: "/assets/texteditor.png",
             title: " Journal Your Journey",
             description: "Your journal is more than just a diary—it's your personal growth space. With our intuitive editor, you can record daily highlights, assess productivity, and track satisfaction rates. Our thoughtfully designed interface makes reflection a natural part of your day.",
             tagline: "Write. Reflect. Evolve."
         },
         {
-            imgSrc: "/src/assets/trackprev.png",
+            imgSrc: "/assets/trackprev.png",
             title: " Revisit and Reflect",
             description: "Every step counts! Explore your previous journal entries effortlessly.Relive your achievements, understand your patterns, and build a deeper connection with your personal growth journey.",
             tagline: "Learn from the past to shape your future."
         },
 
         {
-            imgSrc: "/src/assets/goalss.png",
+            imgSrc: "/assets/goalss.png",
             title: "Track Goals with Heatmap",
             description: "Stay motivated by tracking your progress visually! The heatmap highlights your consistency over time, giving you a clear picture of your journey. Watch your progress unfold day by day, and celebrate your dedication to personal growth.",
             tagline: "Keep moving forward, one day at a time."
         },
         {
-            imgSrc: "/src/assets/tasktable.png",
+            imgSrc: "/assets/tasktable.png",
             title: "Build Powerful Habits",
             description: "Our Daily Actions feature helps you focus on what truly matters. Set your priorities for the day, check them off as you go, and stay consistent. Every small step counts, and we’re here to keep you on track.",
             tagline: "Plan your day, conquer your goals."

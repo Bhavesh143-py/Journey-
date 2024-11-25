@@ -5,7 +5,7 @@ const Footerpage =()=>{
                 <div className="md:flex md:justify-between">
                     <div className="mb-6 md:mb-0">
                         <a href="/" className="flex items-center">
-                            <img src="\src\assets\uphillll_rounded.png" className="h-8 me-3" alt="Journey Logo" />
+                            <img src="\assets\uphillll_rounded.png" className="h-8 me-3" alt="Journey Logo" />
                             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Journey</span>
                         </a>
                     </div>

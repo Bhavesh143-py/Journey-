@@ -50,7 +50,7 @@ function SignupRender() {
           <div className="h-3/4 flex items-center justify-center">
             <div className="p-8 rounded-lg w-full max-w-md flex flex-col items-center m-4 border border-gray-300 dark:border-gray-700 shadow-lg">
               <a href="/" className="flex items-center space-x-3 pb-3">
-                <img src="\src\assets\uphillll_rounded.png" alt="journey" className="h-8" />
+                <img src="\assets\uphillll_rounded.png" alt="journey" className="h-8" />
                 <span className="self-center text-2xl font-semibold whitespace-nowrap">
                   Journey
                 </span>

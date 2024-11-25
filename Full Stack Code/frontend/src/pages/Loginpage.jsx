@@ -34,7 +34,7 @@ function LoginUser() {
         <div className="flex items-center justify-center">
           <div className="p-4 rounded-lg w-full max-w-md flex flex-col items-center border border-gray-300 dark:border-gray-700 shadow-lg bg-white dark:bg-gray-800">
             <a href="/" className="flex items-center space-x-3 pb-3">
-              <img src="\src\assets\uphillll_rounded.png" alt="journey" className="h-8" />
+              <img src="\assets\uphillll_rounded.png" alt="journey" className="h-8" />
               <span className="self-center text-2xl font-semibold whitespace-nowrap">
                 Journey
               </span>
