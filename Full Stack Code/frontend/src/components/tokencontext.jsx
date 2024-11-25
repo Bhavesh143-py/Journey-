@@ -48,7 +48,7 @@ export const useUsername =()=> useContext(UserContext);
 export const UsernameProvider = ({children}) =>{
   const navigate = useNavigate();
   const [ProUsername, setProUsername] = useState(() => sessionStorage.getItem('ProUsername') || null);
-  const [ProPass, setProPass] = useState(() => sessionStorage.getItem('ProUsername') || null);
+  const [ProPass, setProPass] = useState(() => sessionStorage.getItem('ProPass') || null);
   useEffect(() => {
     if (ProUsername && ProPass) {
       // Save token to sessionStorage whenever it changes
@@ -60,7 +60,7 @@ export const UsernameProvider = ({children}) =>{
       sessionStorage.removeItem('ProPass');
       navigate('/');
     }
-  }, [ProUsername]);
+  }, [ProUsername,ProPass]);
 
   
   return(

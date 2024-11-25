@@ -16,9 +16,7 @@ import DarkModeButton from "../components/DarkMode";
 function SignupRender() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  // const [mail, setMail] = useState("");
   const navigate2 = useNavigate();
-  const [userdet, setuserdet] = useState();
   const { setToken } = useToken();
   const { setProUsername,setProPass } =useUsername();
   const { darkMode } = useDarkMode();

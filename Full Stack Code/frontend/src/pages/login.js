@@ -1,5 +1,5 @@
-const Login = ({username,password},navigate2,setToken,setProUsername,setProPass)=>{
-    fetch("http://localhost:3000/api/user/login",{
+const Login =async ({username,password},navigate2,setToken,setProUsername,setProPass)=>{
+    await fetch("http://localhost:3000/api/user/login",{
         method : "POST",
         headers:{ "Content-Type": "application/json",},
         body : JSON.stringify({
