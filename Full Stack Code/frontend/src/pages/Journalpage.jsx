@@ -4,6 +4,7 @@ import axios from 'axios';
 import { NavigateRoutes } from "../components/navig";
 import MyEditor from "../components/TextEditor";
 import DarkModeButton from "../components/DarkMode";
+import { URL } from "../url";
 
 
 function DatePickerComponent({ date, setDate }) {
@@ -144,7 +145,7 @@ function Journal() {
   const {darkMode} =useDarkMode();
   // Function to upload the journal entry to the backend
   const uploadJournal = () => {
-    fetch("http://localhost:3000/api/journal/journal", {
+    fetch(`${URL}/api/journal/journal`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -176,7 +177,7 @@ function Journal() {
     if (token && typeof token === 'string') {
       const fetchJournal = async () => {
         try {
-          const response = await axios.get("http://localhost:3000/api/journal/getjournal", {
+          const response = await axios.get(`${URL}/api/journal/getjournal`, {
             headers: {
               Authorization: `Bearer ${token}`,
               'Content-Type': 'application/json',
@@ -210,7 +211,7 @@ function Journal() {
     if(token){
       const fetchmonthlyjournal = async ()=>{
         try{
-          const responses = await axios.get("http://localhost:3000/api/journal/getjournalmonthwise",{
+          const responses = await axios.get(`${URL}/api/journal/getjournalmonthwise`,{
             headers :{
               Authorization: `Bearer ${token}`,
               'Content-Type': 'application/json',

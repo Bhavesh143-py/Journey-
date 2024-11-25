@@ -1,5 +1,6 @@
+import { URL } from "../url";
 const Login =async ({username,password},navigate2,setToken,setProUsername,setProPass)=>{
-    await fetch("http://localhost:3000/api/user/login",{
+    await fetch(`${URL}/api/user/login`,{
         method : "POST",
         headers:{ "Content-Type": "application/json",},
         body : JSON.stringify({

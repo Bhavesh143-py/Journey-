@@ -1,5 +1,6 @@
+import { URL } from "../url";
  const remove_task=async (index,{token},onTaskRemoved)=>{
-    const response =await fetch("http://localhost:3000/api/tasks/removetask",
+    const response =await fetch(`${URL}/api/tasks/removetask`,
     {
         method : "DELETE",
         headers : {

@@ -2,13 +2,14 @@
 import remove_task from './removetask';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { URL } from '../url';
 
 export default function TaskTable({ todos = [], token, onTaskRemoved, setTaskUpdated }) {
   const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
   // Handle checkbox check/uncheck
   function handleCheck(day, id, completed) {
-    fetch('http://localhost:3000/api/tasks/completed', {
+    fetch(`${URL}/api/tasks/completed`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

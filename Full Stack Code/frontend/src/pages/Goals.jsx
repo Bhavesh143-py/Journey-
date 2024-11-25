@@ -6,6 +6,7 @@ import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import HeatMapComponent from "./heatmap";
 import DarkModeButton from "../components/DarkMode";
 import { Datepicker } from "flowbite-react";
+import { URL } from "../url";
 
 export function Goals() {
     const [startDate, setStartDate] = useState("");
@@ -56,7 +57,7 @@ export function Goals() {
         setEditingGoalId(null);
     };
     const handleDelete=(goalId)=>{
-        fetch("http://localhost:3000/api/goals/deletegoal",{
+        fetch(`${URL}/api/goals/deletegoal`,{
             method:"DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -81,7 +82,7 @@ export function Goals() {
 
     // Upload the edited goal to the backend (PUT request)
     const uploadGoal = (goalId) => {
-        fetch("http://localhost:3000/api/goals/updategoal", {
+        fetch(`${URL}/api/goals/updategoal`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -111,7 +112,7 @@ export function Goals() {
 
     // Upload new goal (POST request)
     const uploadNewGoal = () => {
-        fetch("http://localhost:3000/api/goals/creategoal", {
+        fetch(`${URL}/api/goals/creategoal`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -147,7 +148,7 @@ export function Goals() {
         if (token) {
             const fetchGoals = async () => {
                 try {
-                    const response = await fetch("http://localhost:3000/api/goals/getgoals", {
+                    const response = await fetch(`${URL}/api/goals/getgoals`, {
                         headers: {
                             Authorization: `Bearer ${token}`,
                             "Content-Type": "application/json",

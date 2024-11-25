@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRedo } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from "react-router-dom";
 import DarkModeButton from "../components/DarkMode";
+import { URL } from "../url";
 
 export default function AddTodos() {
   const {token}=useToken();
@@ -23,7 +24,7 @@ export default function AddTodos() {
   const ResetChecks =async ()=>{
     if(token){
       try{
-        const response = await axios.put("http://localhost:3000/api/tasks/resettask", {}, {
+        const response = await axios.put(`${URL}/api/tasks/resettask`, {}, {
           headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json'
@@ -41,7 +42,7 @@ export default function AddTodos() {
     if (token) {
       const fetchTodos = async () => {
         try {
-          const response = await axios.get("http://localhost:3000/api/tasks/home", {
+          const response = await axios.get(`${URL}/api/tasks/home`, {
             headers: {
               Authorization: `Bearer ${token}`,
               'Content-Type': 'application/json'
