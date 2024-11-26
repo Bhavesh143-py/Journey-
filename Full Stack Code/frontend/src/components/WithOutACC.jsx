@@ -8,7 +8,6 @@ export default function Without() {
     const { setProUsername,setProPass } =useUsername();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false); // For loading feedback
-
     const handleProceed = async () => {
         setLoading(true);
         const username = `user_${Math.random().toString(36).substr(2, 9)}`;

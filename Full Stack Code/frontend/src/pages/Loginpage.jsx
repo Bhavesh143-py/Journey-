@@ -15,13 +15,16 @@ function LoginUser() {
   const { setToken } = useToken();
   const {setProUsername,setProPass} =useUsername();
   const { darkMode } =useDarkMode();
-  
+  const [loading, setLoading] = useState(false);
   async function handlelogin(event) {
     event.preventDefault();
+    setLoading(true);
     try {
       await Login({ username, password }, navigate2, setToken, setProUsername, setProPass);
     } catch (error) {
       console.error("Error during signup:", error);
+    }finally{
+      setLoading(false);
     }
     
   }
@@ -65,7 +68,7 @@ function LoginUser() {
                   className="w-full px-4 py-2 text-center border rounded-xl border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700"
                   type="submit"
                 >
-                  Login User
+                  {loading ? "Processing..." : "Login"}
                 </button>
               </div>
 

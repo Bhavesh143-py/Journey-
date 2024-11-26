@@ -20,14 +20,18 @@ function SignupRender() {
   const { setToken } = useToken();
   const { setProUsername,setProPass } =useUsername();
   const { darkMode } = useDarkMode();
+  const [loading, setLoading] = useState(false);
   const gsapref = useRef();
   gsap.registerPlugin(useGSAP);
   async function handleprofile(event) {
     event.preventDefault(); // Prevent default form submission
+    setLoading(true);
     try {
       await Signup({ username, password }, navigate2, setToken, setProUsername,setProPass);
     } catch (error) {
       console.error("Error during signup:", error);
+    }finally{
+      setLoading(false);
     }
   }
 
@@ -80,7 +84,7 @@ function SignupRender() {
                   type="submit"
                   className="w-full px-4 py-2 text-center border rounded-xl border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700"
                 >
-                  Sign Up
+                  {loading ? "Processing..." : "Sign Up"}
                 </button>
                 <div className="w-full my-4">
                   <Without />
