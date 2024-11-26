@@ -37,7 +37,7 @@ const NamePlate =()=>{
     }
     return(
         <div>
-            <h1 ref={headerref} className="mb-6 font-extrabold text-10xl text-center py-6">
+            <h1 ref={headerref} className="mb-6 font-extrabold text-5xl text-center py-6 md:text-10xl">
                 <BreakTheText prop={header} />
             </h1>
         </div>
